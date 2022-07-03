@@ -6,16 +6,16 @@ export const Exercise1 = () => {
 
   const subtractNumber = () => {
     if (number === 0) return;
-    setNumber(number - 1);
+    setNumber(previousNumber => previousNumber - 1);
   };
 
   const addNumber = () => {
-    setNumber(number + 1);
+    setNumber(previousNumber => previousNumber + 1);
   };
 
   const reset = () => {
     setNumber(0);
-  }
+  };
 
   return (
     <div>
