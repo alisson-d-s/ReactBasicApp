@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./AppRoutes";
 import { Navbar } from './components/Navbar';
-import "./style.css";
+import "./css/GlobalStyle.css";
 
 function App() {
   return (
