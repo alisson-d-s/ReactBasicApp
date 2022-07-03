@@ -1,0 +1,34 @@
+import { useState } from 'react';
+import "./style.css";
+
+function App() {
+  const [number, setNumber] = useState(0);
+
+  const subtractNumber = () => {
+    if (number === 0) return;
+    setNumber(number - 1);
+  };
+
+  const addNumber = () => {
+    setNumber(number + 1);
+  };
+
+  const reset = () => {
+    setNumber(0);
+  }
+
+  return (
+    <>
+        <div className="container">
+          <button className="btn-sup" onClick={subtractNumber}>-</button>
+          <span>{number}</span>
+          <button className="btn-sup" onClick={addNumber}>+</button>
+        </div>
+        <div className="container">
+          <button className="btn-reset" onClick={reset}>reset</button>
+        </div>
+    </>
+  );
+};
+
+export default App;
