@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { RepositoriesList, RepositoriesListProps } from "./RepositoriesList";
+import "../../css/GithubRepositories.css";
+
 
 export const GithubRepositories = () => {
     const [repo, setRepo] = useState<RepositoriesListProps>();
