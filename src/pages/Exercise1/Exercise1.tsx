@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/Exercise1.css";
+import "../../css/Exercise1.css";
 
 export const Exercise1 = () => {
     const [number, setNumber] = useState(0);
