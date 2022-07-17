@@ -1,3 +1,17 @@
 .container-repo-list {
     display: flex;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.input-repo-link {
+    width: 50%;
+    margin: 0 1rem;
+}
+
+.button {
+    width: auto;
+}
