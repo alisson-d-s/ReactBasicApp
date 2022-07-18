@@ -2,17 +2,15 @@ export type RepositoriesListProps = {
     repositories: Array<{
         name: string;
     }>
+    handleRepoClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 };
 
-export const RepositoriesList = ({ repositories }: RepositoriesListProps) => {
+export const RepositoriesList = ({ repositories, handleRepoClick }: RepositoriesListProps) => {
     return (
         <div>
             {
                 repositories.map((repo, index) => (
-                    <div className="container-repo-list" key={index}>
-                        <h1>{repo.name}</h1>
-                        <input type={"checkbox"}></input>
-                    </div>
+                    <h3 className="repo-item" key={index} ><a onClick={(e) => handleRepoClick(e)} href="#">{repo.name}</a></h3>
                 ))
             }
         </div>

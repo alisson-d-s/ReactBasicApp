@@ -1,5 +1,5 @@
-.container-repo-list {
-    display: flex;
+.repo-item {
+    margin: 5px;
 }
 
 .container {
@@ -14,4 +14,20 @@
 
 .button {
     width: auto;
+}
+
+.div-repos {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.repo-list {
+    width: auto;
+}
+
+.repo-info {
+    width: 100%;
 }

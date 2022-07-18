@@ -8,6 +8,7 @@ export const GithubRepositories = () => {
     const [username, setUsername] = useState("");
     const [repo, setRepo] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
+    const [repoInfo, setRepoInfo] = useState("");
 
     useEffect(() => {
         setLink(`https://api.github.com/users/${username}/repos`);
@@ -33,10 +34,25 @@ export const GithubRepositories = () => {
             setErrorMessage(response.statusText);
             setRepo([]);
             return;
-        }
+        }        
 
         setErrorMessage("");
         setRepo(await response.json());
+    };
+
+    const handleRepoClick = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        const repoName = e.currentTarget.innerText;
+
+        const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
+
+        if (!response.ok) {
+            setRepoInfo(response.statusText)
+            return;
+        }
+
+        const { language } = await response.json()
+
+        setRepoInfo(language);
     };
 
     return (
@@ -55,8 +71,11 @@ export const GithubRepositories = () => {
                 <span className="container">Link: {link}</span>
                 <span className="container" >{errorMessage}</span>
             </form>
-            <div>
-                <RepositoriesList repositories={repo} />          
+            <div className="div-repos">
+                <div className="repo-list">
+                    <RepositoriesList repositories={repo} handleRepoClick={handleRepoClick} />          
+                </div>
+                <div className="repo-info"><h5>Language: {repoInfo}</h5></div>
             </div>
         </div>
     );
