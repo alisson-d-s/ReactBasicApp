@@ -2,13 +2,26 @@ import React, { useEffect, useState } from "react";
 import { RepositoriesList } from "./RepositoriesList";
 
 import "../../css/GithubRepositories.css";
+import { RepositoryInfo } from "./RepositoryInfo";
+
+export type RepositoriesReturn = {
+    name?: string;
+    html_url?: string
+    description?: string;
+    language?: string;
+    error?: string;
+};
 
 export const GithubRepositories = () => {
     const [link, setLink] = useState<string>("");
     const [username, setUsername] = useState("");
     const [repo, setRepo] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
-    const [repoInfo, setRepoInfo] = useState("");
+    const [repoInfo, setRepoInfo] = useState<RepositoriesReturn>({});
+
+    useEffect(() => {
+        setRepoInfo({});
+    }, [repo]);
 
     useEffect(() => {
         setLink(`https://api.github.com/users/${username}/repos`);
@@ -46,13 +59,13 @@ export const GithubRepositories = () => {
         const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
 
         if (!response.ok) {
-            setRepoInfo(response.statusText)
+            setRepoInfo({error: response.statusText})
             return;
         }
 
-        const { language } = await response.json()
+        const repoInfo: RepositoriesReturn = await response.json()
 
-        setRepoInfo(language);
+        setRepoInfo(repoInfo);
     };
 
     return (
@@ -75,7 +88,11 @@ export const GithubRepositories = () => {
                 <div className="repo-list">
                     <RepositoriesList repositories={repo} handleRepoClick={handleRepoClick} />          
                 </div>
-                <div className="repo-info"><h5>Language: {repoInfo}</h5></div>
+                <div className="repo-info">
+                    {
+                        !repo.length ? null : <RepositoryInfo {...repoInfo} /> 
+                    }
+                </div>
             </div>
         </div>
     );
