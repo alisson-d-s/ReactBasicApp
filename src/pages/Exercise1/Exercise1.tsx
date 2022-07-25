@@ -20,12 +20,12 @@ export const Exercise1 = () => {
   return (
     <div>
       <div className="container">
-        <button className="btn-sup" onClick={subtractNumber}>-</button>
-        <span data-testid="number-span" >{number}</span>
-        <button className="btn-sup" onClick={addNumber}>+</button>
+        <button data-testid="subtractButton" className="btn-sup" onClick={subtractNumber}>-</button>
+        <span data-testid="number" >{number}</span>
+        <button data-testid="addButton" className="btn-sup" onClick={addNumber}>+</button>
       </div>
       <div className="container">
-        <button className="btn-reset" onClick={reset}>reset</button>
+        <button data-testid="resetButton" className="btn-reset" onClick={reset}>reset</button>
       </div>
     </div>
   );
